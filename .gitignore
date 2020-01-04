@@ -3,6 +3,9 @@
 .project
 .settings/
 
+#VSCode
+.vscode
+
 # Intellij
 .idea/
 *.iml
@@ -586,3 +589,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+*.factorypath

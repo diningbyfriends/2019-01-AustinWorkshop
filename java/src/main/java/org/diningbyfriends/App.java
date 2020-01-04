@@ -5,9 +5,6 @@ import org.apache.tinkerpop.gremlin.driver.Cluster;
 import org.apache.tinkerpop.gremlin.driver.remote.DriverRemoteConnection;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
-import org.apache.tinkerpop.gremlin.structure.VertexProperty;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,10 +14,8 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.both;
 /**
  * DiningByFriends - Console Application
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         Cluster cluster = connectToDatabase();
         System.out.println("using cluster connection: " + cluster.toString());
         GraphTraversalSource g = getGraphTraversalSource(cluster);
@@ -38,22 +33,22 @@ public class App
         while (option != 0) {
             option = showMenu();
             switch (option) {
-                case 0:
-                    break;
-                case 1:
-                    // Find Person
-                    System.out.println("Found person: " + getPerson(g));
-                    break;
-                case 2:
-                    // Find Friends
-                    System.out.println(getFriends(g));
-                    break;
-                case 3:
-                    // Find Friends of Friends
-                    System.out.println(getFriendsOfFriends(g));
-                    break;
-                default:
-                    System.out.println("Sorry, please enter valid Option");
+            case 0:
+                break;
+            case 1:
+                // Find Person
+                System.out.println("Found person: " + getPerson(g));
+                break;
+            case 2:
+                // Find Friends
+                System.out.println(getFriends(g));
+                break;
+            case 3:
+                // Find Friends of Friends
+                System.out.println(getFriendsOfFriends(g));
+                break;
+            default:
+                System.out.println("Sorry, please enter valid Option");
             }
         }
 
@@ -73,7 +68,7 @@ public class App
         System.out.println("--------------");
         System.out.println("Enter your choice:");
         option = keyboard.nextInt();
-
+        keyboard.close();
         return option;
     }
 
@@ -81,10 +76,9 @@ public class App
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter the first name of for the person to find:");
         String name = keyboard.nextLine();
+        keyboard.close();
 
-        Vertex vertex = g.V().
-                has("person", "first_name", name).
-                next();
+        Vertex vertex = g.V().has("person", "first_name", name).next();
 
         return vertex.toString();
     }
@@ -93,11 +87,10 @@ public class App
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter the name of the person to get their friends: ");
         String name = keyboard.nextLine();
+        keyboard.close();
 
-        List<Object> friends = g.V().has("person","first_name",name).
-                both("friends").dedup().
-                values("first_name").
-                toList();
+        List<Object> friends = g.V().has("person", "first_name", name).both("friends").dedup().values("first_name")
+                .toList();
 
         return StringUtils.join(friends, System.lineSeparator());
     }
@@ -106,13 +99,10 @@ public class App
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter the name of the person to get their friends: ");
         String name = keyboard.nextLine();
+        keyboard.close();
 
-        List<Object> friends = g.V().has("person","first_name",name).
-                repeat(
-                        both("friends")
-                      ).times(2).dedup().
-                values("first_name").
-                toList();
+        List<Object> friends = g.V().has("person", "first_name", name).repeat(both("friends")).times(2).dedup()
+                .values("first_name").toList();
 
         return StringUtils.join(friends, System.lineSeparator());
     }
