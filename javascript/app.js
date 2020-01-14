@@ -96,7 +96,7 @@ function getGraphTraversalSource(cluster) {
 }
 
 function connectToDatabase() {
-    return new DriverRemoteConnection('ws://localhost:8182/gremlin');
+    return new DriverRemoteConnection('ws://db:8182/gremlin');
 }
 
 main();

@@ -9,7 +9,7 @@ to_string = json.dumps
 
 class App(object):    
     def connectToDatabase(self):
-        return DriverRemoteConnection('ws://localhost:8182/gremlin', 'g')
+        return DriverRemoteConnection('ws://db:8182/gremlin', 'g')
 
     def getGraphTraversalSource(self, cluster):
         return traversal().withRemote(cluster)

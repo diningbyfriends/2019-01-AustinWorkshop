@@ -113,7 +113,7 @@ public class App {
 
     public static Cluster connectToDatabase() {
         Cluster.Builder builder = Cluster.build();
-        builder.addContactPoint("localhost");
+        builder.addContactPoint("db");
         builder.port(8182);
 
         return builder.create();

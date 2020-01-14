@@ -124,7 +124,7 @@ namespace csharp
 
         public static DriverRemoteConnection ConnectToDatabase()
         {
-            return new DriverRemoteConnection(new GremlinClient(new GremlinServer("localhost", 8182)));
+            return new DriverRemoteConnection(new GremlinClient(new GremlinServer("db", 8182)));
         }
     }
 }
