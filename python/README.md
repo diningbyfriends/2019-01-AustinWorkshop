@@ -1,3 +1,10 @@
 # Dining By Friends - Python
 
-intro text
+
+** Building
+
+```pip install -r requirements.txt```
+
+** Running
+
+```python app.py```

@@ -1,3 +1,9 @@
 # Dining By Friends - C# version
 
-intro text
+** Building
+
+```dotnet build```
+
+** Running
+
+```dotnet run```

@@ -1,3 +1,9 @@
 # Dining By Friends - JavaScript
 
-intro text
+** Building
+
+```npm install```
+
+** Running
+
+```node run app.js```
