@@ -23,9 +23,9 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println();
-        System.out.println("-------------------------------------");
-        System.out.println("- Starting DiningByFriends Demo App -");
-        System.out.println("-------------------------------------");
+        System.out.println("---------------------------------------------------");
+        System.out.println("- Starting DiningByFriends Demo App, Java Edition -");
+        System.out.println("---------------------------------------------------");
         Cluster cluster = connectToDatabase();
         System.out.println("using cluster connection: " + cluster.toString());
         GraphTraversalSource g = getGraphTraversalSource(cluster);
@@ -51,31 +51,31 @@ public class App {
                 break;
             case 2:
                 // Find Friends
-                System.out.println("Found friends: \n" + getFriends(g));
+                System.out.println("Found friends:" + System.lineSeparator() + getFriends(g));
                 break;
             case 3:
                 // Find Friends of Friends
-                System.out.println("Found friends of friends: \n" + getFriendsOfFriends(g));
+                System.out.println("Found friends of friends:" + System.lineSeparator() + getFriendsOfFriends(g));
                 break;
             case 4:
                 // Find path between two people
-                System.out.println(findPathBetweenPeople(g));
+                System.out.println("Found paths:" + System.lineSeparator() + findPathBetweenPeople(g));
                 break;
             case 5:
                 // Add person
-                System.out.println(addPerson(g));
+                System.out.println("Added vertex: " + addPerson(g));
                 break;
             case 6:
                 // Update person
-                System.out.println(updatePerson(g));
+                System.out.println("Updated vertex: " + updatePerson(g));
                 break;
             case 7:
                 // Add Friends Edge between people
-                System.out.println(addFriendsEdge(g));
+                System.out.println("Added edge: " + addFriendsEdge(g));
                 break;
             case 8:
                 // Drop person
-                System.out.println(deletePerson(g));
+                System.out.println("Count of vertice dropped: " + deletePerson(g));
                 break;
             default:
                 System.out.println("Sorry, please enter valid Option");
@@ -163,7 +163,6 @@ public class App {
         System.out.println("Enter the name for the person to add:");
         String name = input.nextLine();
 
-        //This returns a Vertex type
         Vertex newVertex = g.addV("person").property("first_name", name).next();
 
         return newVertex.toString();
@@ -175,8 +174,8 @@ public class App {
         System.out.println("Enter the new name for the person:");
         String newName = input.nextLine();
 
-        //This returns a Vertex type
         Vertex vertex = g.V().has("person", "first_name", name).property("first_name", newName).next();
+
         return vertex.toString();
     }
 
@@ -186,7 +185,6 @@ public class App {
         System.out.println("Enter the name for the person to end the edge at:");
         String toName = input.nextLine();
 
-        //This returns an Edge type
         Edge newEdge = g.V().has("person", "first_name", fromName)
                 .addE("friends").to(__.V().has("person", "first_name", toName))
                 .next();
