@@ -9,7 +9,7 @@
   "author": "Dave Bechberger",
   "license": "Apache-2.0",
   "dependencies": {
-    "gremlin": "^3.4.4",
+    "gremlin": "^3.7.2",
     "readline-sync": "^1.4.10"
   }
 }
